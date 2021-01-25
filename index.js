@@ -5,15 +5,17 @@ var textMessage = document.querySelector('.text_message');
 
 button.addEventListener('click', function() {
 	button.textContent = "Try again!";
-	var player1Score = rollTheDice()
-	player1.src = scoreToImageSrc(player1Score)
 
-	var player2Score = rollTheDice()
-	player2.src = scoreToImageSrc(player2Score)
+	playerScores= [ ]
+	for (player of [ player1, player2 ]) {
+		var playerScore = rollTheDice();
+		player.src = scoreToImageSrc(playerScore);
+		playerScores.push(playerScore);
+	}
 
-	if (player1Score > player2Score) {
+	if (playerScores[0] > playerScores[1]) {
 		textMessage.textContent = "Player 1 wins. Congratulations!";
-	} else if(player2Score > player1Score) {
+	} else if(playerScores[1] > playerScores[0]) {
 		textMessage.textContent = "Player 2 wins. Congratulations!";
 	} else {
 		textMessage.textContent = "This is a draw =/ Try again.";
